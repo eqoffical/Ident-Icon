@@ -10,7 +10,7 @@ def generate_random_string(length):
     return ''.join(random.choice(characters) for _ in range(length))
 
 def apply_random_color(image):
-    # Generate a random color
+    
     random_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     
     width, height = image.size

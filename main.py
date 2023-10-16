@@ -4,6 +4,7 @@ import random
 import string
 from io import BytesIO
 import os
+import time
 
 def generate_random_string(length):
     characters = string.ascii_letters + string.digits
@@ -23,7 +24,8 @@ def apply_random_color(image):
                 pixels[x, y] = random_color
 
 def generate_identicon(input_string, output_file):
-    generator = pydenticon.Generator(5, 5)
+    
+    generator = pydenticon.Generator(7, 7)
     icon_bytes = generator.generate(input_string, 420, 420)
     
     # Convert the bytes to a PIL Image
@@ -39,13 +41,22 @@ def generate_identicon(input_string, output_file):
     icon_image.save(output_file)
 
 if __name__ == "__main__":
-    custom_output_file_path = input("Enter the output file name (e.g., 'icon.png'): ")
-    if not custom_output_file_path:
-        custom_output_file_path = "icon.png"  # Default file name
+    
+    while True:
+        
+        time.sleep(1.5)
 
-    try:
-        random_input_string = generate_random_string(10)  # Generates a random 10-character string
-        generate_identicon(random_input_string, custom_output_file_path)
-        print(f"Random Identicon saved to {custom_output_file_path}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+        custom_output_file_path = input("Enter the output file name (e.g., 'icon.png'): ")
+        
+        if not custom_output_file_path:
+            custom_output_file_path = "icon.png"  # Default file name
+
+        try:
+    
+            random_input_string = generate_random_string(10)  # Generates a random 10-character string
+            generate_identicon(random_input_string, custom_output_file_path)
+            print(f"Random Identicon saved to {custom_output_file_path}")
+    
+        except Exception as e:
+
+            print(f"An error occurred: {e}")

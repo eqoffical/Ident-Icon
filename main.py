@@ -3,6 +3,7 @@ from PIL import Image
 import random
 import string
 from io import BytesIO
+import os
 
 def generate_random_string(length):
     characters = string.ascii_letters + string.digits
@@ -31,13 +32,16 @@ def generate_identicon(input_string, output_file):
     # Apply a single random color to all the black parts
     apply_random_color(icon_image)
 
+    # Get the full path for the output file
+    output_file = os.path.join(os.getcwd(), output_file)
+
     # Save the PIL Image to the specified output file path
     icon_image.save(output_file)
 
 if __name__ == "__main__":
-    custom_output_file_path = input("Enter the output file path (e.g., 'identicon.png'): ")
+    custom_output_file_path = input("Enter the output file name (e.g., 'icon.png'): ")
     if not custom_output_file_path:
-        custom_output_file_path = "identicon.png"  # Default file name
+        custom_output_file_path = "icon.png"  # Default file name
 
     try:
         random_input_string = generate_random_string(10)  # Generates a random 10-character string

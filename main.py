@@ -4,7 +4,6 @@ import random
 import string
 from io import BytesIO
 import os
-import time
 
 def generate_random_string(length):
     characters = string.ascii_letters + string.digits
@@ -42,21 +41,17 @@ def generate_identicon(input_string, output_file):
 
 if __name__ == "__main__":
     
-    while True:
-        
-        time.sleep(1.5)
-
-        custom_output_file_path = input("Enter the output file name (e.g., 'icon.png'): ")
-        
-        if not custom_output_file_path:
-            custom_output_file_path = "icon.png"  # Default file name
-
-        try:
+    custom_output_file_path = input("Enter the output file name (e.g., 'icon.png'): ")
     
-            random_input_string = generate_random_string(10)  # Generates a random 10-character string
-            generate_identicon(random_input_string, custom_output_file_path)
-            print(f"Random Identicon saved to {custom_output_file_path}")
-    
-        except Exception as e:
+    if not custom_output_file_path:
+        custom_output_file_path = "icon.png"  # Default file name
 
-            print(f"An error occurred: {e}")
+    try:
+
+        random_input_string = generate_random_string(10)  # Generates a random 10-character string
+        generate_identicon(random_input_string, custom_output_file_path)
+        print(f"Random Identicon saved to {custom_output_file_path}")
+
+    except Exception as e:
+
+        print(f"An error occurred: {e}")

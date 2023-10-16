@@ -27,16 +27,9 @@ def generate_identicon(input_string, output_file):
     generator = pydenticon.Generator(7, 7)
     icon_bytes = generator.generate(input_string, 420, 420)
     
-    # Convert the bytes to a PIL Image
     icon_image = Image.open(BytesIO(icon_bytes))
-
-    # Apply a single random color to all the black parts
     apply_random_color(icon_image)
-
-    # Get the full path for the output file
     output_file = os.path.join(os.getcwd(), output_file)
-
-    # Save the PIL Image to the specified output file path
     icon_image.save(output_file)
 
 if __name__ == "__main__":
